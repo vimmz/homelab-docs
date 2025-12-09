@@ -130,7 +130,9 @@ graph LR;
     LAN --- Proxmox;
     Proxmox --- AppsVM;
     AppsVM --- DockerStack;
+```
 
+```mermaid
 graph TB;
     AppsVM[apps-vm 10.10.10.2];
     Caddy[Caddy Reverse Proxy];
@@ -163,3 +165,4 @@ graph TB;
     Caddy --> SAB;
     Caddy --> Mealie;
     Caddy --> Nextcloud;
+```
