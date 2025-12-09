@@ -121,48 +121,106 @@
 ```mermaid
 graph LR;
     Internet((Internet));
-    LAN[LAN 192.168.0.0/24];
-    Proxmox[Proxmox Host 192.168.0.190];
-    AppsVM[apps-vm 10.10.10.2];
-    DockerStack[Docker Services];
 
-    Internet --- LAN;
+    TailscaleClients[Tailscale clients<br/>(phone, laptop, etc.)];
+    LANClients[LAN clients<br/>(TV, PC, etc.)];
+
+    Proxmox[Proxmox host<br/>192.168.0.190];
+    Tailscale0[tailscale0];
+    LAN[wlp6s0<br/>192.168.0.0/24];
+    VMNet[vmbr0<br/>10.10.10.0/24];
+
+    AppsVM[apps-vm<br/>10.10.10.2];
+    Win11VM[win11 VM];
+
+    DockerStack[Docker services<br/>(media, infra, DNS, etc.)];
+
+    Internet --- LANClients;
+    Internet --- TailscaleClients;
+
+    TailscaleClients --> Tailscale0;
+    Tailscale0 --> Proxmox;
+
+    LANClients --- LAN;
     LAN --- Proxmox;
-    Proxmox --- AppsVM;
-    AppsVM --- DockerStack;
+
+    Proxmox --- VMNet;
+    VMNet --- AppsVM;
+    VMNet --- Win11VM;
+
+    AppsVM --> DockerStack;
 ```
 
 ```mermaid
 graph TB;
     AppsVM[apps-vm 10.10.10.2];
-    Caddy[Caddy Reverse Proxy];
+
+    %% Core infra on apps-vm
+    Caddy[Caddy reverse proxy];
+    Pihole[Pi-hole];
+    Unbound[Unbound];
+    Prom[Prometheus];
+    Grafana[Grafana];
+    Dashy[Dashy];
+    OpenST[OpenSpeedTest];
+
+    %% Media / download stack
     Jellyfin[Jellyfin];
     Sonarr[Sonarr];
     Radarr[Radarr];
     Prowlarr[Prowlarr];
     Qbit[qBittorrent];
     SAB[SABnzbd];
-    Pihole[Pi-hole];
-    Unbound[Unbound];
-    Mealie[Mealie];
-    Nextcloud[Nextcloud Stack];
-    Grafana[Grafana];
-    Prom[Prometheus];
-    Dashy[Dashy];
+    Bazarr[Bazarr];
 
+    %% Web apps / tools
+    Mealie[Mealie];
+    Foundry[Foundry VTT];
+    Scriberr[Scriberr];
+
+    %% Nextcloud stack
+    NCWeb[Nextcloud web (nginx)];
+    NCApp[Nextcloud app (PHP-FPM)];
+    NCDB[Nextcloud DB (Postgres)];
+    NCRedis[Nextcloud Redis];
+
+    %% Metrics exporters
+    NodeExp[node-exporter];
+    JSONExp[json-exporter];
+
+    %% Core links
     AppsVM --> Caddy;
     AppsVM --> Pihole;
     AppsVM --> Unbound;
-    AppsVM --> Grafana;
     AppsVM --> Prom;
+    AppsVM --> Grafana;
     AppsVM --> Dashy;
+    AppsVM --> OpenST;
+    AppsVM --> NCWeb;
+    AppsVM --> NCApp;
+    AppsVM --> NCDB;
+    AppsVM --> NCRedis;
 
+    %% Caddy reverse proxy fronting apps
     Caddy --> Jellyfin;
     Caddy --> Sonarr;
     Caddy --> Radarr;
     Caddy --> Prowlarr;
     Caddy --> Qbit;
     Caddy --> SAB;
+    Caddy --> Bazarr;
     Caddy --> Mealie;
-    Caddy --> Nextcloud;
+    Caddy --> Foundry;
+    Caddy --> Scriberr;
+    Caddy --> NCWeb;
+    Caddy --> Dashy;
+    Caddy --> OpenST;
+
+    %% DNS chain
+    Pihole --> Unbound;
+
+    %% Metrics relationships
+    Prom --> NodeExp;
+    Prom --> JSONExp;
+    Grafana --> Prom;
 ```
