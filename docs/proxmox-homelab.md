@@ -122,9 +122,9 @@
 flowchart LR
     Internet((Internet))
     LAN[LAN 192.168.0.0/24]
-    Proxmox[Proxmox Host\n192.168.0.190]
-    AppsVM[apps-vm\n10.10.10.2]
-    DockerStack[Docker Services\n(Jellyfin, Sonarr, etc.)]
+    Proxmox[Proxmox Host 192.168.0.190]
+    AppsVM[apps-vm 10.10.10.2]
+    DockerStack[Docker Services (Jellyfin, Sonarr, etc.)]
 
     Internet <--> LAN
     LAN <--> Proxmox
