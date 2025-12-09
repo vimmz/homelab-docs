@@ -119,48 +119,47 @@
 ## 5. Mermaid Diagrams
 
 ```mermaid
-flowchart LR
-    Internet((Internet))
-    LAN[LAN 192.168.0.0/24]
-    Proxmox[Proxmox Host 192.168.0.190]
-    AppsVM[apps-vm 10.10.10.2]
-    DockerStack[Docker Services (Jellyfin, Sonarr, etc.)]
+graph LR;
+    Internet((Internet));
+    LAN[LAN 192.168.0.0/24];
+    Proxmox[Proxmox Host 192.168.0.190];
+    AppsVM[apps-vm 10.10.10.2];
+    DockerStack[Docker Services];
 
-    Internet <--> LAN
-    LAN <--> Proxmox
-    Proxmox <-- vmbr0 --> AppsVM
-    AppsVM --> DockerStack
+    Internet --- LAN;
+    LAN --- Proxmox;
+    Proxmox --- AppsVM;
+    AppsVM --- DockerStack;
 
-```mermaid
-flowchart TB
-    AppsVM[apps-vm 10.10.10.2]
-    Caddy[Caddy Reverse Proxy]
-    Jellyfin[Jellyfin]
-    Sonarr[Sonarr]
-    Radarr[Radarr]
-    Prowlarr[Prowlarr]
-    Qbit[qBittorrent]
-    SAB[SABnzbd]
-    Pihole[Pi-hole]
-    Unbound[Unbound]
-    Mealie[Mealie]
-    Nextcloud[Nextcloud Stack]
-    Grafana[Grafana]
-    Prom[Prometheus]
-    Dashy[Dashy]
+graph TB;
+    AppsVM[apps-vm 10.10.10.2];
+    Caddy[Caddy Reverse Proxy];
+    Jellyfin[Jellyfin];
+    Sonarr[Sonarr];
+    Radarr[Radarr];
+    Prowlarr[Prowlarr];
+    Qbit[qBittorrent];
+    SAB[SABnzbd];
+    Pihole[Pi-hole];
+    Unbound[Unbound];
+    Mealie[Mealie];
+    Nextcloud[Nextcloud Stack];
+    Grafana[Grafana];
+    Prom[Prometheus];
+    Dashy[Dashy];
 
-    AppsVM --> Caddy
-    AppsVM --> Pihole
-    AppsVM --> Unbound
-    AppsVM --> Grafana
-    AppsVM --> Prom
-    AppsVM --> Dashy
+    AppsVM --> Caddy;
+    AppsVM --> Pihole;
+    AppsVM --> Unbound;
+    AppsVM --> Grafana;
+    AppsVM --> Prom;
+    AppsVM --> Dashy;
 
-    Caddy --> Jellyfin
-    Caddy --> Sonarr
-    Caddy --> Radarr
-    Caddy --> Prowlarr
-    Caddy --> Qbit
-    Caddy --> SAB
-    Caddy --> Mealie
-    Caddy --> Nextcloud
+    Caddy --> Jellyfin;
+    Caddy --> Sonarr;
+    Caddy --> Radarr;
+    Caddy --> Prowlarr;
+    Caddy --> Qbit;
+    Caddy --> SAB;
+    Caddy --> Mealie;
+    Caddy --> Nextcloud;
