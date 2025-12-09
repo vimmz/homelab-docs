@@ -120,19 +120,19 @@
 
 ```mermaid
 graph LR
-    Internet((Internet))
-    TailscaleClients[Tailscale clients (phone, laptop, etc.)]
-    LANClients[LAN clients (TV, PC, etc.)]
+    Internet["Internet"]
+    TailscaleClients["Tailscale clients"]
+    LANClients["LAN clients"]
 
-    Proxmox[Proxmox host 192.168.0.190]
-    Tailscale0[tailscale0]
-    LAN[wlp6s0 192.168.0.0/24]
-    VMNet[vmbr0 10.10.10.0/24]
+    Proxmox["Proxmox host 192.168.0.190"]
+    Tailscale0["tailscale0"]
+    LAN["wlp6s0 192.168.0.0/24"]
+    VMNet["vmbr0 10.10.10.0/24"]
 
-    AppsVM[apps-vm 10.10.10.2]
-    Win11VM[win11 VM]
+    AppsVM["apps-vm 10.10.10.2"]
+    Win11VM["win11 VM"]
 
-    DockerStack[Docker services (media, infra, DNS, etc.)]
+    DockerStack["Docker services"]
 
     Internet --- LANClients
     Internet --- TailscaleClients
