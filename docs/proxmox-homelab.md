@@ -130,6 +130,8 @@ flowchart LR
     LAN <--> Proxmox
     Proxmox <-- vmbr0 --> AppsVM
     AppsVM --> DockerStack
+
+```mermaid
 flowchart TB
     AppsVM[apps-vm 10.10.10.2]
     Caddy[Caddy Reverse Proxy]
