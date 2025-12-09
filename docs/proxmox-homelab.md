@@ -152,42 +152,36 @@ graph LR
 
 ```mermaid
 graph TB
-    AppsVM[apps-vm 10.10.10.2]
+    AppsVM["apps-vm 10.10.10.2"]
 
-    %% Core infra
-    Caddy[Caddy reverse proxy]
-    Pihole[Pi-hole]
-    Unbound[Unbound]
-    Prom[Prometheus]
-    Grafana[Grafana]
-    Dashy[Dashy]
-    OpenST[OpenSpeedTest]
+    Caddy["Caddy reverse proxy"]
+    Pihole["Pi-hole"]
+    Unbound["Unbound"]
+    Prom["Prometheus"]
+    Grafana["Grafana"]
+    Dashy["Dashy"]
+    OpenST["OpenSpeedTest"]
 
-    %% Media / download stack
-    Jellyfin[Jellyfin]
-    Sonarr[Sonarr]
-    Radarr[Radarr]
-    Prowlarr[Prowlarr]
-    Qbit[qBittorrent]
-    SAB[SABnzbd]
-    Bazarr[Bazarr]
+    Jellyfin["Jellyfin"]
+    Sonarr["Sonarr"]
+    Radarr["Radarr"]
+    Prowlarr["Prowlarr"]
+    Qbit["qBittorrent"]
+    SAB["SABnzbd"]
+    Bazarr["Bazarr"]
 
-    %% Web apps / tools
-    Mealie[Mealie]
-    Foundry[Foundry VTT]
-    Scriberr[Scriberr]
+    Mealie["Mealie"]
+    Foundry["Foundry VTT"]
+    Scriberr["Scriberr"]
 
-    %% Nextcloud stack
-    NCWeb[Nextcloud web (nginx)]
-    NCApp[Nextcloud app (PHP-FPM)]
-    NCDB[Nextcloud DB (Postgres)]
-    NCRedis[Nextcloud Redis]
+    NCWeb["Nextcloud web nginx"]
+    NCApp["Nextcloud app php fpm"]
+    NCDB["Nextcloud db postgres"]
+    NCRedis["Nextcloud redis"]
 
-    %% Metrics exporters
-    NodeExp[node-exporter]
-    JSONExp[json-exporter]
+    NodeExp["node-exporter"]
+    JSONExp["json-exporter"]
 
-    %% Core links
     AppsVM --> Caddy
     AppsVM --> Pihole
     AppsVM --> Unbound
@@ -200,7 +194,6 @@ graph TB
     AppsVM --> NCDB
     AppsVM --> NCRedis
 
-    %% Caddy fronting apps
     Caddy --> Jellyfin
     Caddy --> Sonarr
     Caddy --> Radarr
@@ -215,10 +208,8 @@ graph TB
     Caddy --> Dashy
     Caddy --> OpenST
 
-    %% DNS chain
     Pihole --> Unbound
 
-    %% Metrics chain
     Prom --> NodeExp
     Prom --> JSONExp
     Grafana --> Prom
