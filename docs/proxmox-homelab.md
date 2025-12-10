@@ -42,7 +42,7 @@
 
 ### win11 (VMID 100)
 
-- **Role:** Gaming / desktop VM
+- **Role:** Secondary gaming / desktop VM
 - **CPU:** `host,hidden=1`, 6 vCPU
 - **RAM:** 16 GB, ballooning off
 - **NUMA:** on
