@@ -7,7 +7,7 @@
 - **CPU:** AMD Ryzen 5 3600 – 6 cores / 12 threads
 - **RAM:** 32 GB
 - **Swap:** 7.5 GB
-- **GPU:** PCIe GPU passed through to `win11` VM
+- **GPU:** PCIe GPU (Nvidia RTX 3080 10 GB) passed through to `win11` VM
 - **LAN NIC:** `wlp6s0` (LAN `192.168.0.0/24`)
 - **VM bridge:** `vmbr0` (internal `10.10.10.0/24`)
 
