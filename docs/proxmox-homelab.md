@@ -47,7 +47,7 @@
 - **RAM:** 16 GB, ballooning off
 - **NUMA:** on
 - **Hugepages:** 1 GB pages
-- **GPU:** multiple PCIe devices passed through
+- **GPU:** multiple PCIe devices passed through (Nvidia RTX 3080 10 GB audio + video)
 - **Disks:** 50 GB qcow2 + 240 GB physical SSD
 - **Boot:** UEFI + TPM 2.0
 
