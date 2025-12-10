@@ -69,8 +69,7 @@ Approximate mapping / usage:
     - `nvme1n1p1` – EFI system partition (`/boot/efi`)  
     - `nvme1n1p4` – root filesystem (`/`)  
     - `nvme1n1p3` → `cryptswap` – 4 GB encrypted swap  
-- **nvme0n1 (1 TB NVMe)**  
-  - Single large partition – **Windows 11 OS / games**.
+- **nvme0n1 (1 TB NVMe)** – **Windows 11 OS / games**.
 - **sda (1 TB SATA)** – **Windows 11 games**.
 - **sdb (120 GB SATA)** – 120 GB SSD, partitioned into ~128M + 110.7G + 867M (utility drive).
 - **sdc (2 TB SATA)** – **Windows 11 games**.
@@ -81,18 +80,13 @@ Approximate mapping / usage:
 
 ### 2.1 Pop!_OS (Linux)
 
-From `lscpu`:
+`lscpu` + `free -h`:
 
 ```text
 Model name:  AMD Ryzen 7 5700X3D 8-Core Processor
 CPU(s):      16
 Socket(s):   1
 NUMA node0:  0-15
-```
-
-From `free -h`:
-
-```text
 Mem:   31Gi total, ~3.7Gi used, ~23Gi free, ~25Gi available
 Swap:  4.0Gi total, 0 used
 ```
@@ -115,7 +109,7 @@ OsVersion : 10.0.26100
 - **Version:** 10.0.26100  
 
 **Dual boot summary:**  
-- **Pop!_OS** boots from NVMe (`nvme1n1`), using its own EFI entry.  
+- **Pop!_OS** boots from NVMe (`nvme1n1`), using own EFI entry.  
 - **Windows 11** boots from another SSD, selected via firmware/boot menu or bootloader configuration.
 
 ---
@@ -202,7 +196,7 @@ graph TB
     SATA3["SATA 120GB (sdb 840 EVO)"]
 
     PopOS["Pop!_OS root on nvme1n1p4"]
-    Win11["Windows 11 (likely on NVMe0 or SATA)"]
+    Win11["Windows 11 (on NVMe0)"]
 
     GamingRig --> NVMe1
     GamingRig --> NVMe0
